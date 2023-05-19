@@ -1,9 +1,22 @@
 import Link from "next/link";
 import styles from "./Notes.module.css"
 
+// when fetching data without the fetch method certain parameters have to be exported
+// export const dynamic = 'auto',
+//   dynamicParams = true,
+//   revalidate = 0,
+//   fetchCache = 'auto',
+//   runtime = 'nodejs',
+//   perferredRegion = 'auto'
+
 // Components can fetch server side props this way
 async function getNotes() {
-  const res = await fetch("http://127.0.0.1:8090/api/collections/fireship/records?page=1&perPage=30");
+  // By adding the cache option to no-store this request will happen on every reload of the page
+  // Similar to getServerSideProps
+  const res = await fetch(
+    "http://127.0.0.1:8090/api/collections/fireship/records?page=1&perPage=30",
+    { cache: 'no-store'}
+    );
   const data = await res.json();
   return data?.items as any[];
 }
