@@ -1,4 +1,5 @@
 import styles from "../Notes.module.css"
+import UpdateNote from "../UpdateNote";
 
 async function getNote(noteId: string) {
   const res = await fetch(
@@ -23,6 +24,8 @@ export default async function NotePage({ params }: any) {
         <h5>{note.content}</h5>
         <p>{note.created}</p>
       </div>
+
+      <UpdateNote note={note} />
     </div>
   )
 }
