@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./Notes.module.css"
+import CreateNote from "./CreateNotes";
 
 // when fetching data without the fetch method certain parameters have to be exported
 // export const dynamic = 'auto',
@@ -35,6 +36,8 @@ export default async function NotesPage() {
             return <Note key={note.id} note={note} />
           })}
       </div>
+
+      <CreateNote/>
     </div>
   )
 }
