@@ -1,11 +1,13 @@
 import styles from "../Notes.module.css"
 import UpdateNote from "../UpdateNote";
+import DeleteNote from "../DeleteNote";
 
 async function getNote(noteId: string) {
   const res = await fetch(
     `http://127.0.0.1:8090/api/collections/fireship/records/${noteId}`,
     {
-      next: { revalidate: 10 } // This will produce Incremental Static Regeneration - ISR
+      next: { revalidate: 10}, // This will produce Incremental Static Regeneration - ISR
+      cache: 'no-cache' 
     }
   )
     const data = await res.json()
@@ -26,6 +28,7 @@ export default async function NotePage({ params }: any) {
       </div>
 
       <UpdateNote note={note} />
+      <DeleteNote note={note} />
     </div>
   )
 }
